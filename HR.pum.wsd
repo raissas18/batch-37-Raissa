@@ -16,6 +16,7 @@ entity "USER" as USERS {
     * id_user : INT <<PK>>
     --
     * id_company : INT <<FK>>
+    * id_role : INT <<FK>>
     full_name : VARCHAR(255)
     email : VARCHAR(255)
     password : VARCHAR(255)
