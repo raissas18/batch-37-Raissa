@@ -162,6 +162,28 @@ LEFT JOIN employee AS manager
 ON employee.manager_id = manager.id_employee;
 
 
+CREATE OR REPLACE VIEW view_payroll_hub AS
+SELECT
+    payroll.id_payroll,
+    employee.full_name,
+    payroll_period.period_start,
+    payroll_period.period_end,
+    payroll_period.payment_date,
+    payroll.gross_pay,
+    payroll.deductions,
+    payroll.net_pay,
+    payroll.status
+FROM payroll
+
+JOIN employee
+ON payroll.id_employee = employee.id_employee
+
+JOIN payroll_period
+ON payroll.id_period = payroll_period.id_period;
+
+
+
+
 
 CREATE OR REPLACE VIEW view_payroll_periods AS
 SELECT
