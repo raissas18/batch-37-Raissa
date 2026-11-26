@@ -1,0 +1,109 @@
+@startuml
+title ERD HR-CORE
+' =========================
+' TABEL COMPANY
+' =========================
+entity "COMPANY" as COMPANY {
+    * id_company : INT <<PK>>
+    --
+    company_name : VARCHAR(255)
+}
+
+' =========================
+' TABEL USER
+' =========================
+entity "USER" as USERS {
+    * id_user : INT <<PK>>
+    --
+    * id_company : INT <<FK>>
+    full_name : VARCHAR(255)
+    email : VARCHAR(255)
+    password : VARCHAR(255)
+}
+
+' =========================
+' TABEL DEPARTMENT
+' =========================
+entity "DEPARTMENT" as DEPARTMENT {
+    * id_department : INT <<PK>>
+    --
+    * id_company : INT <<FK>>
+    department_name : VARCHAR(255)
+    
+}
+' =========================
+' TABEL EMPLOYEE
+' =========================
+entity "EMPLOYEE" as EMPLOYEE {
+    * id_employee : INT <<PK>>
+    --
+    * id_company : INT <<FK>>
+    * id_department : INT <<FK>>
+     full_name: VARCHAR(255)
+     email: VARCHAR(255)
+     phone: VARCHAR(255)
+     job_role: VARCHAR(255)
+     hire_date: DATE
+     salary : DECIMAL(15,2)
+    manager_id : INT <<FK>>
+    manager_name: VARCHAR(255)
+    
+}
+' =========================
+' TABEL PAYROLL_PERIOD
+' =========================
+entity "PAYROLL_PERIOD" as PERIOD {
+    * id_period : INT <<PK>>
+    --
+    period_start : DATE
+    period_end : DATE
+    payment_date : DATE
+    status : VARCHAR(50)
+}
+
+' =========================
+' TABEL PAYROLL
+' =========================
+entity "PAYROLL" as PAYROLL {
+    * id_payroll : INT <<PK>>
+    --
+    * id_employee : INT <<FK>>
+    * id_period : INT <<FK>>
+      gross_pay : DECIMAL(15,2)
+      deductions : DECIMAL(15,2)
+      net_pay : DECIMAL(15,2)
+      status : VARCHAR(50)
+}
+
+' =========================
+' TABEL PAYROLL_DETAIL
+' =========================
+entity "PAYROLL_DETAIL" as DETAIL {
+    * id_detail : INT <<PK>>
+    --
+    * id_payroll : INT <<FK>>
+    component_name : VARCHAR(255)
+    amount : DECIMAL(15,2)
+}
+
+' =========================
+' RELASI ANTAR TABEL
+' =========================
+
+COMPANY ||--o{ USERS : memiliki
+
+COMPANY ||--o{ DEPARTMENT : memiliki
+
+COMPANY ||--o{ EMPLOYEE : mempekerjakan
+
+DEPARTMENT ||--o{ EMPLOYEE : mengatur
+
+EMPLOYEE ||--o{ PAYROLL : menerima
+
+PERIOD ||--o{ PAYROLL : memiliki
+
+PAYROLL ||--o{ DETAIL : memiliki rincian
+
+
+
+@enduml
