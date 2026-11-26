@@ -7,6 +7,11 @@ CREATE TABLE company (
     id_company INT AUTO_INCREMENT PRIMARY KEY,
     company_name VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE role (
+    id_role INT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(100) NOT NULL
+);
    
 CREATE TABLE users (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
