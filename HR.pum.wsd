@@ -21,6 +21,12 @@ entity "USER" as USERS {
     password : VARCHAR(255)
 }
 
+entity "ROLE" as ROLE {
+    * id_role : INT <<PK>>
+    --
+    role_name : VARCHAR(100)
+}
+
 ' =========================
 ' TABEL DEPARTMENT
 ' =========================
@@ -91,6 +97,8 @@ entity "PAYROLL_DETAIL" as DETAIL {
 ' =========================
 
 COMPANY ||--o{ USERS : memiliki
+
+ROLE ||--o{ USERS : dimiliki
 
 COMPANY ||--o{ DEPARTMENT : memiliki
 
