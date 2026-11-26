@@ -21,7 +21,10 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
 
     FOREIGN KEY (id_company)
-    REFERENCES company(id_company)
+    REFERENCES company(id_company),
+
+    FOREIGN KEY (id_role)
+    REFERENCES role(id_role)
 );
 
 
